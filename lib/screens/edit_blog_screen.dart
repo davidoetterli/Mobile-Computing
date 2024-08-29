@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/blog.dart';
-import '../services/api_service.dart'; // Stelle sicher, dass du diesen import hast
+import '../services/api_service.dart';
 
 class EditBlogScreen extends StatefulWidget {
   final Blog blog;
@@ -29,12 +29,12 @@ class _EditBlogScreenState extends State<EditBlogScreen> {
       content: _contentController.text,
       author: widget.blog.author,
       publishedDate: widget.blog.publishedDate,
-      comments: widget.blog.comments, 
+      comments: widget.blog.comments,
       likedByUsers: [],
     );
 
     await ApiService().updateBlog(updatedBlog.id, updatedBlog);
-    Navigator.of(context).pop(); // Zurück zur vorherigen Seite
+    Navigator.of(context).pop();
   }
 
   @override
@@ -49,7 +49,7 @@ class _EditBlogScreenState extends State<EditBlogScreen> {
           ),
         ],
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

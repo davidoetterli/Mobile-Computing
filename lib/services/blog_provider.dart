@@ -3,7 +3,7 @@ import '../models/blog.dart';
 import '../services/api_service.dart';
 
 class BlogProvider with ChangeNotifier {
-  final ApiService _apiService = ApiService(); // Verwende ApiService, um Daten zu verwalten
+  final ApiService _apiService = ApiService();
   List<Blog> _blogs = [];
   bool _isLoading = false;
 
@@ -16,9 +16,8 @@ class BlogProvider with ChangeNotifier {
     notifyListeners();
 
     try {
-      _blogs = await _apiService.fetchBlogs(); 
+      _blogs = await _apiService.fetchBlogs();
     } catch (e) {
-      // Handle error
       print('Fehler beim Abrufen der Blogs: $e');
     } finally {
       _isLoading = false;
@@ -30,7 +29,7 @@ class BlogProvider with ChangeNotifier {
   Future<void> deleteBlog(int id) async {
     try {
       await _apiService.deleteBlog(id);
-      await fetchBlogs(); // Aktualisiert die Liste nach dem Löschen
+      await fetchBlogs();
     } catch (e) {
       print('Fehler beim Löschen des Blogs: $e');
     }
@@ -39,7 +38,7 @@ class BlogProvider with ChangeNotifier {
   Future<void> likeBlog(int id, String username) async {
     try {
       await _apiService.likeBlog(id, username);
-      await fetchBlogs(); // Aktualisiert die Liste nach dem Liken
+      await fetchBlogs();
     } catch (e) {
       print('Fehler beim Liken des Blogs: $e');
     }

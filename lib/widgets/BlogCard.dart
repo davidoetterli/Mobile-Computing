@@ -8,11 +8,13 @@ class BlogCard extends StatefulWidget {
     required this.blog,
     required this.onLikeToggle,
     required this.username,
+    required this.onTap,
   });
 
   final Blog blog;
   final ValueChanged<Blog> onLikeToggle;
   final String username;
+  final VoidCallback onTap;
 
   @override
   _BlogCardState createState() => _BlogCardState();
@@ -28,16 +30,9 @@ class _BlogCardState extends State<BlogCard> {
         : blog.content;
 
     return InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => BlogDetailScreen(blog: blog),
-          ),
-        );
-      },
+      onTap: widget.onTap,
       child: Card(
-        elevation: 4, // Optionale Erhöhung für einen 3D-Effekt
+        elevation: 4,
         margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -58,7 +53,7 @@ class _BlogCardState extends State<BlogCard> {
                   Row(
                     children: [
                       Text(
-                        '${blog.likedByUsers.length}', // Anzahl der Likes anzeigen
+                        '${blog.likedByUsers.length}',
                         style: const TextStyle(
                           fontSize: 16,
                           color: Colors.grey,
@@ -66,14 +61,18 @@ class _BlogCardState extends State<BlogCard> {
                       ),
                       IconButton(
                         icon: Icon(
-                          blog.isLikedByMe(username) ? Icons.favorite : Icons.favorite_border,
-                          color: blog.isLikedByMe(username) ? Colors.red : Colors.grey,
+                          blog.isLikedByMe(username)
+                              ? Icons.favorite
+                              : Icons.favorite_border,
+                          color: blog.isLikedByMe(username)
+                              ? Colors.red
+                              : Colors.grey,
                         ),
                         onPressed: () {
                           setState(() {
                             blog.toggleLike(username);
                           });
-                          widget.onLikeToggle(blog); // Benachrichtige den übergeordneten Widget
+                          widget.onLikeToggle(blog);
                         },
                       ),
                     ],
@@ -85,7 +84,7 @@ class _BlogCardState extends State<BlogCard> {
                 contentPreview,
                 style: TextStyle(
                   fontSize: 16,
-                  color: Colors.grey[700], // Optional: Farbe für den Inhalt
+                  color: Colors.grey[700],
                 ),
               ),
               const SizedBox(height: 8),

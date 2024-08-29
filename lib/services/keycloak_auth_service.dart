@@ -7,12 +7,14 @@ class KeycloakAuthService {
   final String _clientId = 'backend-service';
   final String _redirectUri = 'com.hftm.blogapp:/oauth2redirect';
   final String _issuer = 'http://10.0.2.2:8180/realms/blog';
-  final String _discoveryUrl = 'http://10.0.2.2:8180/realms/blog/.well-known/openid-configuration';
+  final String _discoveryUrl =
+      'http://10.0.2.2:8180/realms/blog/.well-known/openid-configuration';
   String? _accessToken;
 
   Future<void> login() async {
     try {
-      final AuthorizationTokenResponse? result = await _appAuth.authorizeAndExchangeCode(
+      final AuthorizationTokenResponse? result =
+          await _appAuth.authorizeAndExchangeCode(
         AuthorizationTokenRequest(
           _clientId,
           _redirectUri,

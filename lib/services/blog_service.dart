@@ -7,7 +7,8 @@ class BlogService {
   BlogService();
 
   Future<List<dynamic>> getBlogs({String? searchStr}) async {
-    final uri = Uri.parse('$baseUrl/blogs').replace(queryParameters: searchStr != null ? {'searchStr': searchStr} : null);
+    final uri = Uri.parse('$baseUrl/blogs').replace(
+        queryParameters: searchStr != null ? {'searchStr': searchStr} : null);
     final response = await http.get(uri);
 
     if (response.statusCode == 200) {
@@ -65,7 +66,8 @@ class BlogService {
     );
 
     if (response.statusCode != 200) {
-      final errorMessage = json.decode(response.body)['message'] ?? 'Failed to like blog';
+      final errorMessage =
+          json.decode(response.body)['message'] ?? 'Failed to like blog';
       throw Exception(errorMessage);
     }
   }

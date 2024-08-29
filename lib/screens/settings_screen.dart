@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 
 import '../services/theme_provider.dart';
 
-
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
 
@@ -16,7 +15,7 @@ class SettingScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           Expanded(
+          Expanded(
             child: Consumer<ThemeProvider>(
               builder: (context, themeProvider, child) {
                 return SwitchListTile(

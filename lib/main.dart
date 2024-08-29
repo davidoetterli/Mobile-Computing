@@ -7,6 +7,7 @@ import 'screens/login_screen.dart';
 import 'screens/settings_screen.dart';
 import 'services/blog_provider.dart';
 import 'services/theme_provider.dart';
+import 'services/user_provider.dart';
 
 void main() {
   runApp(
@@ -14,6 +15,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => BlogProvider()..fetchBlogs()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => UserProvider()),
       ],
       child: const MyApp(),
     ),
@@ -32,7 +34,11 @@ class MyApp extends StatelessWidget {
           themeMode: themeProvider.themeMode,
           theme: ThemeData.light(),
           darkTheme: ThemeData.dark(),
-          home: MainScreen(),
+          home: Consumer<UserProvider>(
+            builder: (context, userProvider, child) {
+              return MainScreen(username: userProvider.username);
+            },
+          ),
         );
       },
     );
@@ -40,7 +46,9 @@ class MyApp extends StatelessWidget {
 }
 
 class MainScreen extends StatefulWidget {
-  MainScreen({super.key});
+  String username;
+
+  MainScreen({required this.username, super.key});
 
   @override
   _MainScreenState createState() => _MainScreenState();
@@ -49,11 +57,17 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
-  static final List<Widget> _widgetOptions = <Widget>[
-    HomeScreen(),
-    CreateBlogScreen(),
-    const SettingScreen(),
-  ];
+  late final List<Widget> _widgetOptions;
+
+  @override
+  void initState() {
+    super.initState();
+    _widgetOptions = <Widget>[
+      HomeScreen(username: widget.username),
+      CreateBlogScreen(username: widget.username),
+      const SettingScreen(),
+    ];
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -61,13 +75,24 @@ class _MainScreenState extends State<MainScreen> {
     });
   }
 
-  void _onUserIconPressed() {
-    Navigator.push(
+  void _onUserIconPressed() async {
+    await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => LoginScreen(),
+        builder: (context) => const LoginScreen(),
       ),
     );
+
+    final newUsername =
+        Provider.of<UserProvider>(context, listen: false).username;
+    setState(() {
+      widget.username = newUsername;
+      _widgetOptions = <Widget>[
+        HomeScreen(username: widget.username),
+        CreateBlogScreen(username: widget.username),
+        const SettingScreen(),
+      ];
+    });
   }
 
   @override
@@ -77,7 +102,7 @@ class _MainScreenState extends State<MainScreen> {
         title: const Text('David\'s Blog'),
         actions: [
           IconButton(
-            icon: Icon(Icons.person),
+            icon: const Icon(Icons.person),
             onPressed: _onUserIconPressed,
           ),
         ],
