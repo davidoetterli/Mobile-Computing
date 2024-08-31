@@ -41,6 +41,7 @@ dependencies:
   flutter_keycloak: ^1.1.5
   flutter_secure_storage: ^8.1.0
   keycloak_flutter: ^0.0.21
+  shared_preferences: ^2.3.2
 
 dev_dependencies:
   flutter_test:
