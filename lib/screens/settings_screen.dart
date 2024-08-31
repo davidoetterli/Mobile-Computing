@@ -14,21 +14,21 @@ class SettingScreen extends StatelessWidget {
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        // children: [
-          // Expanded(
-          //   child: Consumer<ThemeProvider>(
-          //     builder: (context, themeProvider, child) {
-          //       return SwitchListTile(
-          //         title: const Text("Dark Mode"),
-          //         value: themeProvider.themeMode == ThemeMode.dark,
-          //         onChanged: (bool value) {
-          //           themeProvider.toggleTheme(value);
-          //         },
-          //       );
-          //     },
-          //   ),
-          // ),
-        // ],
+        children: [
+          Expanded(
+            child: Consumer<ThemeProvider>(
+              builder: (context, themeProvider, child) {
+                return SwitchListTile(
+                  title: const Text("Dark Mode"),
+                  value: themeProvider.themeMode == ThemeMode.dark,
+                  onChanged: (bool value) {
+                    themeProvider.toggleTheme(value);
+                  },
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
