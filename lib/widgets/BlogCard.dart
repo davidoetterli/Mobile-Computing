@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../models/blog.dart';
-import '../screens/blog_detail_screen.dart';
 
 class BlogCard extends StatefulWidget {
   const BlogCard({

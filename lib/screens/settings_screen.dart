@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../services/theme_provider.dart';
+import '../providers/theme_provider.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
@@ -10,7 +10,7 @@ class SettingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Settings'),
+        title: const Text('Einstellungen'),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -18,12 +18,21 @@ class SettingScreen extends StatelessWidget {
           Expanded(
             child: Consumer<ThemeProvider>(
               builder: (context, themeProvider, child) {
-                return SwitchListTile(
-                  title: const Text("Dark Mode"),
-                  value: themeProvider.themeMode == ThemeMode.dark,
-                  onChanged: (bool value) {
-                    themeProvider.toggleTheme(value);
-                  },
+                return Column(
+                  children: [
+                    Theme(
+                      data: themeProvider.themeMode == ThemeMode.dark
+                          ? ThemeData.dark()
+                          : ThemeData.light(),
+                      child: SwitchListTile(
+                        title: const Text("Dark Mode"),
+                        value: themeProvider.themeMode == ThemeMode.dark,
+                        onChanged: (bool value) {
+                          themeProvider.toggleTheme(value);
+                        },
+                      ),
+                    ),
+                  ],
                 );
               },
             ),

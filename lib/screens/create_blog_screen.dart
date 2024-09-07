@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/blog.dart';
 import '../services/api_service.dart';
-import '../services/user_provider.dart';
+import '../providers/user_provider.dart';
 
 class CreateBlogScreen extends StatefulWidget {
   final String username;

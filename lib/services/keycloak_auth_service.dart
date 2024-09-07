@@ -1,6 +1,5 @@
 import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 class KeycloakAuthService {
   final FlutterAppAuth _appAuth = FlutterAppAuth();

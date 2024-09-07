@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../models/blog.dart';
@@ -5,7 +7,6 @@ import '../models/comment.dart';
 
 class ApiService {
   final String baseUrl = 'http://10.0.2.2:8080'; // Basis-URL des Backends
-  // final String baseUrl = 'http://localhost:8080'; // Basis-URL des Backends
 
   // Methode zum Abrufen der Blogs
   Future<List<Blog>> fetchBlogs({String? searchStr}) async {

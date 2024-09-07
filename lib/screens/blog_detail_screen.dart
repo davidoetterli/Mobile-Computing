@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import '../models/blog.dart';
 import '../models/comment.dart';
 import '../services/api_service.dart';
-import '../services/user_provider.dart';
+import '../providers/user_provider.dart';
 import 'edit_blog_screen.dart';
 
 class BlogDetailScreen extends StatefulWidget {

@@ -5,9 +5,9 @@ import 'screens/create_blog_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/settings_screen.dart';
-import 'services/blog_provider.dart';
-import 'services/theme_provider.dart';
-import 'services/user_provider.dart';
+import 'providers/blog_provider.dart';
+import 'providers/theme_provider.dart';
+import 'providers/user_provider.dart';
 
 void main() {
   runApp(
