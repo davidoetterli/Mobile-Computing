@@ -9,7 +9,7 @@ import 'edit_blog_screen.dart';
 class BlogDetailScreen extends StatefulWidget {
   final Blog blog;
 
-  BlogDetailScreen({required this.blog});
+  const BlogDetailScreen({super.key, required this.blog});
 
   @override
   _BlogDetailScreenState createState() => _BlogDetailScreenState();

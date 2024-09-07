@@ -5,7 +5,7 @@ import '../services/api_service.dart';
 class EditBlogScreen extends StatefulWidget {
   final Blog blog;
 
-  EditBlogScreen({required this.blog});
+  const EditBlogScreen({super.key, required this.blog});
 
   @override
   _EditBlogScreenState createState() => _EditBlogScreenState();

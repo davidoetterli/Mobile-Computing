@@ -7,7 +7,7 @@ import '../providers/user_provider.dart';
 class CreateBlogScreen extends StatefulWidget {
   final String username;
 
-  CreateBlogScreen({required this.username});
+  const CreateBlogScreen({super.key, required this.username});
 
   @override
   _CreateBlogScreenState createState() => _CreateBlogScreenState();

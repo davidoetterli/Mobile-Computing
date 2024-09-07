@@ -7,7 +7,7 @@ import '../widgets/BlogCard.dart';
 import 'blog_detail_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({required this.username, Key? key}) : super(key: key);
+  const HomeScreen({required this.username, super.key});
 
   final String username;
 
