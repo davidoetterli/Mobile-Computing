@@ -5,6 +5,7 @@ import '../models/comment.dart';
 
 class ApiService {
   final String baseUrl = 'http://10.0.2.2:8080'; // Basis-URL des Backends
+  // final String baseUrl = 'http://localhost:8080'; // Basis-URL des Backends
 
   // Methode zum Abrufen der Blogs
   Future<List<Blog>> fetchBlogs({String? searchStr}) async {
